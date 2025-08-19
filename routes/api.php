@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\CategoryResource;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +36,9 @@ Route::get('/categories', function () {
 Route::get('/categories-custom', function () {
     $categories = Category::all();
     return new CategoryCollection($categories);
+});
+
+Route::get('/products/{id}', function ($id) {
+    $product = Product::find($id);
+    return new ProductResource($product);
 });
