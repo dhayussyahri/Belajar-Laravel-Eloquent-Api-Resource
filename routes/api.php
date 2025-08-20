@@ -3,6 +3,7 @@
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
+use App\Http\Resources\ProductsDebugResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -53,4 +54,9 @@ Route::get('/products-paging', function (Request $request) {
     $page = $request->get('page', 1);
     $products = Product::paginate(perPage: 2, page:$page);
     return new ProductCollection($products);
+});
+
+Route::get('/products-debug/{id}', function ($id) {
+    $product = Product::find($id);
+    return new ProductsDebugResource($product);
 });
