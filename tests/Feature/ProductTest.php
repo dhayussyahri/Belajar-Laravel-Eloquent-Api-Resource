@@ -50,4 +50,16 @@ class ProductTest extends TestCase
 
         }
     }
+
+    public function testProductsPaging()
+    {
+        $this->seed([CategorySeeder::class, ProductSeeder::class]);
+        $response = $this->get('/api/products-paging')
+            ->assertStatus(200);
+
+        self::assertCount(2, $response->json("data"));
+        self::assertNotNull($response->json("links"));
+        self::assertNotNull($response->json("meta"));
+        self::assertNotNull($response->json("data"));
+    }
 }
