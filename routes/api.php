@@ -43,7 +43,9 @@ Route::get('/categories-custom', function () {
 Route::get('/products/{id}', function ($id) {
     $product = Product::find($id);
     $product->load("category");
-    return new ProductResource($product);
+    return (new ProductResource($product))
+    ->response()
+    ->header("X-Powered-By", "Dhayus Syahri");
 });
 
 Route::get('/products', function () {
