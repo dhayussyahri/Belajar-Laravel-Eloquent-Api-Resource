@@ -63,3 +63,6 @@ Route::get('/products-debug/{id}', function ($id) {
     $product = Product::find($id);
     return new ProductsDebugResource($product);
 });
+
+
+// ================ Tamat ================= //
